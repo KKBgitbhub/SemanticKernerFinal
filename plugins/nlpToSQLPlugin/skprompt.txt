@@ -1,0 +1,29 @@
+### SQL SERVER SQL tables, with their properties:
+#
+# TABLE CancerR_Encounters (
+    patientID INT NOT NULL,
+    patientEncounterID INT,
+    diagnosisCodeDescription VARCHAR(400),
+    CancerDiagnosisCategory VARCHAR(400),
+    encounterSpeciality VARCHAR(400),
+    encounterType VARCHAR(400),
+    encounterAdmitDateTime DATETIME ,
+    encounterDischargeDateTime DATETIME ,
+    facilityCode VARCHAR(400),
+    ageAtEncounter INT,
+    ageGroup VARCHAR(400),
+    LOS INT,
+    readmission INT
+);
+# TABLE CancerR_PatientSummary (
+    patientID INT NOT NULL,
+    gender VARCHAR(400),
+    nationality VARCHAR(400),
+    nationalColumn VARCHAR(400)
+);
+#
+### A SQL query to find {{$input}}. Please provide only one SQL query and nothing else in a single string. Do not prompt anything else apart from the sql query. Do not put double qoutes " before Select statement like "Select  
+User: How many new cancer cases were registered in the last year?
+Assistant: SELECT COUNT(DISTINCT patientID) AS NewCancerCases FROM CancerR_Encounters WHERE encounterAdmitDateTime >= DATEADD(year, -1, GETDATE())
+User: {{$input}}
+Assistant:

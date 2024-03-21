@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nlptosql
+  labels:
+    app: nlptosql
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nlptosql
+  template:
+    metadata:
+      labels:
+        app: nlptosql
+    spec:
+      containers:
+      - name: nlptosql
+        image: acrtfx.azurecr.io/nlptosql:3.16
+        ports:
+        - containerPort: 5000
+        env:
+        - name: AZURE_OPENAI_DEPLOYMENT_NAME
+          value: "ggg"
+        - name: AZURE_OPENAI_ENDPOINT
+          value: "https://ffqwewq.openai.azure.com/"
+        - name: AZURE_OPENAI_API_KEY
+          value: "fc0fa8f5306941f8973631c344d6312f"
+        - name: SPEECH_KEY
+          value: ""
+        - name: SPEECH_REGION
+          value: ""
+        - name: server_name
+          value: "oas-ov19805-sql.database.windows.net"
+        - name: database_name
+          value: "auctionpaymentdb"
+        - name: SQLADMIN_USER
+          value: "ov19805sqllogin"
+        - name: SQL_PASSWORD
+          value: "P@ssw0rd"
